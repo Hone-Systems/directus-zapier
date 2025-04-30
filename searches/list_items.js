@@ -132,21 +132,24 @@ module.exports = {
 
         // Define sample data for Zapier's testing/UI purposes.
         sample: {
-            // Provide a realistic example of a single item returned by the API
+            // Provide a comprehensive example of a single item returned by the API
             id: 1,
             status: "published",
-            title: "Example Item"
-            // Add other fields relevant to a typical Directus item
+            title: "Example Item",
+            date_created: "2023-01-01T12:00:00Z",
+            date_updated: "2023-01-02T14:30:00Z",
+            user_created: "00000000-0000-0000-0000-000000000000",
+            user_updated: "00000000-0000-0000-0000-000000000000",
+            week_number: 1,
+            sort: 1,
+            description: "Example description text"
         },
 
-        // Define the output fields based on the sample.
-        // Zapier uses this to help users map data in subsequent steps.
+        // Define the output fields dynamically based on the API response
         outputFields: [
-            // Reflect the fields in the sample data
             { key: "id", label: "Item ID", type: "integer" },
-            { key: "status", label: "Status" },
-            { key: "title", label: "Title" }
-            // Add more output fields as needed based on typical collection structures
-        ]
+        ],
+        
+        dynamicFields: true
     }
 };
