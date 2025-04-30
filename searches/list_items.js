@@ -8,7 +8,7 @@ const perform = async (z, bundle) => {
         params: {
             access_token: bundle.authData.access_token,
             // Add optional parameters only if they are provided
-            ...(bundle.inputData.fields && { fields: bundle.inputData.fields.join(";") }), // BUG: Use semicolon instead of comma
+            ...(bundle.inputData.fields && { fields: bundle.inputData.fields.join(",") }), // Fixed: Use comma instead of semicolon
             ...(bundle.inputData.limit && { limit: bundle.inputData.limit }),
             ...(bundle.inputData.offset && { offset: bundle.inputData.offset }),
             ...(bundle.inputData.meta && { meta: bundle.inputData.meta }),
