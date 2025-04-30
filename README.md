@@ -22,3 +22,97 @@ zapier push
 ```
 
 Find out more on the latest docs: https://github.com/zapier/zapier-platform/blob/main/packages/cli/README.md.
+
+# Directus Zapier Integration
+
+This is a Zapier integration for interacting with a [Directus](https://directus.io/) instance.
+
+## Features
+
+Currently, this integration supports the following:
+
+-   **Authentication:** Connects to your Directus instance using its Base URL and a Static Access Token.
+-   **Searches:**
+    -   **List Items in Collection:** Retrieve items from a specified collection, with options for filtering, sorting, field selection, pagination, and search.
+
+## Getting Started
+
+### Prerequisites
+
+-   A Directus instance (Cloud or self-hosted).
+-   A Static Access Token generated for a user/role within your Directus instance (found under Settings -> Data Model -> Roles/Users -> Select User/Role -> Token).
+-   [Zapier CLI](https://github.com/zapier/zapier-platform-cli) installed.
+-   [Node.js](https://nodejs.org/) and npm.
+
+### Installation & Setup (for Development)
+
+1.  **Clone the repository (if applicable):**
+    ```bash
+    git clone <your-repo-url>
+    cd <your-repo-directory>
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Create a `.env` file:**
+    Create a file named `.env` in the root of the project directory and add your Directus instance URL and Access Token. This is used for local testing.
+    ```dotenv
+    # .env
+    DIRECTUS_URL=https://your-instance.directus.app
+    ACCESS_TOKEN=your_directus_static_access_token
+    ```
+    **Important:** Add `.env` to your `.gitignore` file to prevent committing credentials.
+
+### Authentication
+
+When adding this integration to a Zap, you will be prompted for:
+
+-   **Directus Base URL:** The full URL of your Directus instance (e.g., `https://your-instance.directus.app`).
+-   **Static Access Token:** The token you generated in Directus.
+
+### Using the "List Items in Collection" Search
+
+This search action allows you to retrieve items from a Directus collection.
+
+**Input Fields:**
+
+-   **Collection Name (Required):** The unique name (slug) of the collection (e.g., `articles`, `products`).
+-   **Fields to Return (Optional):** Specify which fields to include in the results (comma-separated or one per line). Leave blank for all fields.
+-   **Limit (Optional):** Maximum number of items to return.
+-   **Offset (Optional):** Number of items to skip (for pagination).
+-   **Metadata (Optional):** Metadata to include (e.g., `total_count`).
+-   **Sort Fields (Optional):** Fields to sort by (e.g., `date_created`, `-title`). Prefix with `-` for descending. Use `?` for random.
+-   **Filter (JSON) (Optional):** Directus filter rules in JSON format. See [Directus documentation](https://docs.directus.io/reference/query.html#filter-rules) for syntax.
+-   **Search Query (Optional):** A search term to filter items across multiple fields.
+
+**Output:**
+
+The search returns an array of items from the specified collection, matching the provided criteria.
+
+## Development
+
+### Testing
+
+Ensure your `.env` file is set up correctly (see Installation).
+
+Run the automated tests (using Jest) with the Zapier CLI:
+
+```bash
+zapier test
+```
+
+This command will:
+
+1.  Validate the integration's structure.
+2.  Run integration tests against the Directus instance specified in your `.env` file.
+
+### Pushing Updates (Zapier Platform UI)
+
+After making changes, you can push updates to Zapier using the CLI:
+
+```bash
+zapier push
+```
+
+Follow the prompts to upload your integration version.

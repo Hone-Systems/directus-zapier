@@ -1,5 +1,5 @@
 const authentication = {
-    type: "session",
+    type: "custom",
     // Define the fields needed for authentication. Zapier shows these to the user.
     fields: [
         {
