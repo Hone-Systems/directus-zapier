@@ -18,6 +18,10 @@ const perform = async (z, bundle) => {
         }
     };
 
+    if (!bundle.inputData.fields || bundle.inputData.fields.length === 0) {
+        options.params.fields = '*';
+    }
+
     const response = await z.request(options);
 
     // Directus nests the actual items array under the 'data' key.
@@ -135,18 +139,25 @@ module.exports = {
             // Provide a realistic example of a single item returned by the API
             id: 1,
             status: "published",
-            title: "Example Item"
+            title: "Example Item",
+            week_number: 48,
+            date_created: "2024-11-25T01:40:59.121Z"
             // Add other fields relevant to a typical Directus item
         },
 
         // Define the output fields based on the sample.
         // Zapier uses this to help users map data in subsequent steps.
         outputFields: [
-            // Reflect the fields in the sample data
             { key: "id", label: "Item ID", type: "integer" },
             { key: "status", label: "Status" },
-            { key: "title", label: "Title" }
-            // Add more output fields as needed based on typical collection structures
-        ]
+            { key: "title", label: "Title" },
+            { key: "week_number", label: "Week Number", type: "integer" },
+            { key: "date_created", label: "Date Created", type: "datetime" }
+        ],
+        // Add a dynamic fields function that will be called by Zapier to get fields from sample data
+        dynamicFields: (z, bundle) => {
+            // This function will be called by Zapier to generate fields based on sample data
+            return [];
+        }
     }
 };
