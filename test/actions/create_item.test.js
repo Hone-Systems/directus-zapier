@@ -17,8 +17,8 @@ describe("Creates - Create Item", () => {
             inputData: {
                 collection: testCollection,
                 itemData: {
-                    title: "Test Item Created by Zapier",
-                    status: "draft"
+                    partner: "Test Partner",
+                    week_number: 42
                 }
             }
         };
@@ -30,8 +30,9 @@ describe("Creates - Create Item", () => {
         expect(Array.isArray(result)).toBe(false);
 
         expect(result).toHaveProperty("id");
-        expect(result).toHaveProperty("title", "Test Item Created by Zapier");
-        expect(result).toHaveProperty("status", "draft");
+        expect(result).toHaveProperty("date_created");
+        expect(result).toHaveProperty("partner", "Test Partner");
+        expect(result).toHaveProperty("week_number", 42);
     });
 
     it("should return an error for a non-existent collection", async () => {
@@ -43,8 +44,8 @@ describe("Creates - Create Item", () => {
             inputData: {
                 collection: "non_existent_collection_xyz123", // Use a name unlikely to exist
                 itemData: {
-                    title: "This Should Fail",
-                    status: "draft"
+                    partner: "This Should Fail",
+                    week_number: 99
                 }
             }
         };
