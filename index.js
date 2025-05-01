@@ -2,6 +2,8 @@
 const authentication = require("./authentication");
 // Import the search action
 const listItemsSearch = require("./searches/list_items");
+// Import the create action
+const createItemCreate = require("./creates/create_item");
 
 module.exports = {
     // This is just shorthand to reference the installed dependencies you have.
@@ -22,7 +24,10 @@ module.exports = {
     },
 
     // If you want your creates to show up, you better include it here!
-    creates: {},
+    creates: {
+        // Register the create item action
+        [createItemCreate.key]: createItemCreate
+    },
 
     resources: {}
 };
