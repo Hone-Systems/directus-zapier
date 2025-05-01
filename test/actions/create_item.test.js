@@ -17,7 +17,6 @@ describe("Creates - Create Item", () => {
             inputData: {
                 collection: testCollection,
                 itemData: {
-                    partner: "Test Partner",
                     week_number: 42
                 }
             }
@@ -31,7 +30,6 @@ describe("Creates - Create Item", () => {
 
         expect(result).toHaveProperty("id");
         expect(result).toHaveProperty("date_created");
-        expect(result).toHaveProperty("partner", "Test Partner");
         expect(result).toHaveProperty("week_number", 42);
     });
 
@@ -44,7 +42,6 @@ describe("Creates - Create Item", () => {
             inputData: {
                 collection: "non_existent_collection_xyz123", // Use a name unlikely to exist
                 itemData: {
-                    partner: "This Should Fail",
                     week_number: 99
                 }
             }
